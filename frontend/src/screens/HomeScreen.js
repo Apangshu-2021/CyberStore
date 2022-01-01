@@ -6,12 +6,12 @@ import axios from 'axios'
 
 const HomeScreen = () => {
   const [products, setProducts] = useState([])
-
+  const host = 'http://localhost:5000'
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products')
+      const res = await axios.get(`${host}/api/products`)
 
-      setProducts(data)
+      setProducts(res.data)
     }
     fetchProducts()
   }, [])
