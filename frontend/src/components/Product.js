@@ -25,9 +25,7 @@ const Product = (props) => {
           />
         </Card.Text>
 
-        <Card.Text as='h3' style={{ margin: '1rem 0' }}>
-          ${product.price}
-        </Card.Text>
+        <Card.Text as='h3'>${product.price}</Card.Text>
       </Card.Body>
     </Card>
   )
