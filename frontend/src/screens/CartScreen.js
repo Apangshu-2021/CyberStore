@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, Link, useLocation, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import Message from '../components/Message'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = () => {
-  const location = useLocation()
-  // console.log(location.search)
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
   const navigate = useNavigate()
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
   }
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
+    if (!userInfo) {
+      navigate('/login')
+    }
   }
   return (
     <main className='mt-3'>
