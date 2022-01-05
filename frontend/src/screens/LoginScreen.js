@@ -41,6 +41,7 @@ const LoginScreen = () => {
               type='email'
               placeholder='Enter Email'
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -50,6 +51,7 @@ const LoginScreen = () => {
               type='password'
               placeholder='Enter Password'
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>

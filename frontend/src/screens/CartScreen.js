@@ -21,6 +21,7 @@ const CartScreen = () => {
     if (!userInfo) {
       navigate('/login')
     }
+    navigate('/shipping')
   }
   return (
     <main className='mt-3'>
