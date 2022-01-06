@@ -154,7 +154,9 @@ const PlaceOrderScreen = () => {
                     <Col>${cart.totalPrice}</Col>
                   </Row>
                 </ListGroup.Item>
-                {error && <Message variant='danger' message={error} />}
+                <ListGroup.Item>
+                  {error && <Message variant='danger' message={error} />}
+                </ListGroup.Item>
                 <ListGroup.Item className='btn-group d-flex' role='group'>
                   <Button
                     type='button'

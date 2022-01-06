@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
@@ -9,13 +9,21 @@ import CheckoutSteps from '../components/CheckoutSteps'
 const ShippingScreen = () => {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
+  const userLogin = useSelector((state) => state.userLogin)
   const { shippingAddress } = cart
+  const { userInfo } = userLogin
   const navigate = useNavigate()
 
   const [address, setAddress] = useState(shippingAddress.address)
   const [city, setCity] = useState(shippingAddress.city)
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
   const [country, setCountry] = useState(shippingAddress.country)
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
+  }, [userInfo, navigate])
 
   const submitHandler = (e) => {
     e.preventDefault()

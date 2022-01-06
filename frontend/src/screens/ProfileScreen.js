@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Form, Button, Row, Col, Container } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Table, Form, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUserDetails, updateUserDetails } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
+import { listMyOrders } from '../actions/orderActions'
 
 const ProfileScreen = () => {
   const [name, setName] = useState('')
@@ -18,8 +20,10 @@ const ProfileScreen = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const userDetails = useSelector((state) => state.userDetails)
+  const orderListMy = useSelector((state) => state.orderListMy)
   const { userInfo } = userLogin
   const { loading, error, user } = userDetails
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
   const { success } = userUpdateProfile
 
@@ -30,6 +34,7 @@ const ProfileScreen = () => {
       if (!user || !user.email || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails('profile'))
+        dispatch(listMyOrders())
       } else {
         setName(user.name)
         setEmail(user.email)
@@ -51,7 +56,7 @@ const ProfileScreen = () => {
     <main className='mt-3'>
       <Container>
         <Row>
-          <Col md={5}>
+          <Col md={3}>
             <h2 style={{ textAlign: 'center' }}>User Profile</h2>
             {message && <Message variant='danger' message={message} />}
             {error && <Message variant='danger' message={error} />}
@@ -103,8 +108,63 @@ const ProfileScreen = () => {
               </Button>
             </Form>
           </Col>
-          <Col md={7}>
+          <Col md={9}>
             <h2 style={{ textAlign: 'center' }}>My Orders</h2>
+            {loadingOrders ? (
+              <Loader />
+            ) : errorOrders ? (
+              <Message variant='danger' message={errorOrders} />
+            ) : (
+              <Table striped bordered hover responsive className='table-sm'>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>TOTAL</th>
+                    <th>PAID</th>
+                    <th>DELIVERED</th>
+                    <th>ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders &&
+                    orders.map((order) => (
+                      <tr key={order._id}>
+                        <td>{order._id}</td>
+                        <td>{order.createdAt.substring(0, 10)}</td>
+                        <td>{order.totalPrice}</td>
+                        <td>
+                          {order.isPaid ? (
+                            order.paidAt.substring(0, 10)
+                          ) : (
+                            <i
+                              className='fas fa-times'
+                              style={{ color: 'red' }}
+                            ></i>
+                          )}
+                        </td>
+                        <td>
+                          {order.isDelivered ? (
+                            order.deliveredAt.substring(0, 10)
+                          ) : (
+                            <i
+                              className='fas fa-times'
+                              style={{ color: 'red' }}
+                            ></i>
+                          )}
+                        </td>
+                        <td>
+                          <LinkContainer to={`/order/${order._id}`}>
+                            <Button variant='light' className='btn-sm'>
+                              Details
+                            </Button>
+                          </LinkContainer>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
+            )}
           </Col>
         </Row>
       </Container>
