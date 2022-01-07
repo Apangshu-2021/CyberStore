@@ -121,9 +121,9 @@ const ProfileScreen = () => {
                     <th>ID</th>
                     <th>DATE</th>
                     <th>TOTAL</th>
-                    <th>PAID</th>
+                    <th>PAID AT</th>
                     <th>DELIVERED</th>
-                    <th>ID</th>
+                    <th>ORDER DETAILS</th>
                   </tr>
                 </thead>
                 <tbody>

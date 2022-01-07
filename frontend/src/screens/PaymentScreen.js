@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
@@ -9,8 +9,16 @@ import CheckoutSteps from '../components/CheckoutSteps'
 const PaymentScreen = () => {
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
+  const userLogin = useSelector((state) => state.userLogin)
   const { shippingAddress } = cart
+  const { userInfo } = userLogin
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
+  }, [userInfo, navigate])
 
   if (!shippingAddress) {
     navigate('/shipping')

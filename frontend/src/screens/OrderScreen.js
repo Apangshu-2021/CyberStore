@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import {
-  Container,
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Card,
-} from 'react-bootstrap'
+import { Container, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { useNavigate } from 'react-router-dom'
@@ -25,14 +17,19 @@ const OrderScreen = (props) => {
 
   const orderDetails = useSelector((state) => state.orderDetails)
   const orderPay = useSelector((state) => state.orderPay)
+  const userLogin = useSelector((state) => state.userLogin)
 
   const { order, loading, error } = orderDetails
   const { loading: loadingPay, success: successPay } = orderPay
+  const { userInfo } = userLogin
 
   const navigate = useNavigate()
   const [sdkReady, setSdkReady] = useState(false)
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get(`${host}/api/config/paypal`)
       const script = document.createElement('script')
@@ -55,7 +52,7 @@ const OrderScreen = (props) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, order, id, successPay])
+  }, [userInfo, navigate, dispatch, order, id, successPay])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)

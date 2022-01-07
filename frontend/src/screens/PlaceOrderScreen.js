@@ -17,7 +17,9 @@ import { createdOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart)
+  const userLogin = useSelector((state) => state.userLogin)
   const { shippingAddress, paymentMethod, cartItems } = cart
+  const { userInfo } = userLogin
   const dispatch = useDispatch()
 
   // Calculate Prices
@@ -41,11 +43,14 @@ const PlaceOrderScreen = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
     if (success) {
       navigate(`/order/${order._id}`)
     }
     // eslint-disable-next-line
-  }, [navigate, success])
+  }, [userInfo, navigate, success])
 
   const placeOrderHandler = () => {
     dispatch(
