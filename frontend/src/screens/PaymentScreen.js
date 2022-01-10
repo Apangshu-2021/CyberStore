@@ -18,11 +18,10 @@ const PaymentScreen = () => {
     if (!userInfo) {
       navigate('/login')
     }
-  }, [userInfo, navigate])
-
-  if (!shippingAddress) {
-    navigate('/shipping')
-  }
+    if (!shippingAddress || !shippingAddress.address) {
+      navigate('/shipping')
+    }
+  }, [userInfo, navigate, shippingAddress])
 
   const [paymentMethod, setPaymentMethod] = useState('Paypal')
 

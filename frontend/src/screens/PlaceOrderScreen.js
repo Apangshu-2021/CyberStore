@@ -14,12 +14,15 @@ import { useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { Link } from 'react-router-dom'
 import { createdOrder } from '../actions/orderActions'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart)
   const userLogin = useSelector((state) => state.userLogin)
   const { shippingAddress, paymentMethod, cartItems } = cart
   const { userInfo } = userLogin
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
   // Calculate Prices
@@ -40,17 +43,23 @@ const PlaceOrderScreen = () => {
   const orderCreate = useSelector((state) => state.orderCreate)
 
   const { order, success, error } = orderCreate
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (!userInfo) {
       navigate('/login')
     }
+    if (!cart.shippingAddress || !cart.shippingAddress.address) {
+      navigate('/shipping')
+    } else if (!cart.paymentMethod) {
+      navigate('/payment')
+    }
+
     if (success) {
       navigate(`/order/${order._id}`)
+      dispatch({ type: ORDER_CREATE_RESET })
     }
     // eslint-disable-next-line
-  }, [userInfo, navigate, success])
+  }, [userInfo, cart, userInfo, navigate, success])
 
   const placeOrderHandler = () => {
     dispatch(

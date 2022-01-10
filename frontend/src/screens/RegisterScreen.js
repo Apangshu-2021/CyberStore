@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -14,19 +14,16 @@ const RegisterScreen = () => {
   const [confirmPassword, setconfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
-  const location = useLocation()
   const navigate = useNavigate()
-  // console.log(location.search)
-  const redirect = location.search ? location.search.split('=')[1] : '/'
   const dispatch = useDispatch()
   const userRegister = useSelector((state) => state.userRegister)
   const { loading, userInfo, error } = userRegister
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect)
+      navigate('/')
     }
-  }, [userInfo, navigate, redirect])
+  }, [userInfo, navigate])
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
