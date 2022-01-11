@@ -14,9 +14,6 @@ h1 {
 h2 {
   padding: 0.5rem 0;
 }
-a:hover {
-  text-decoration: underline;
-}
 body {
   overflow-wrap: break-word;
 }
