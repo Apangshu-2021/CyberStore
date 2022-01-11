@@ -59,54 +59,58 @@ const ProfileScreen = () => {
           <Col md={3}>
             <h2 style={{ textAlign: 'center' }}>User Profile</h2>
             {message && <Message variant='danger' message={message} />}
-            {error && <Message variant='danger' message={error} />}
             {/* {success && <Message variant='success' message='Profile Updated' />} */}
-            {loading && <Loader />}
-            <Form onSubmit={onSubmitHandler}>
-              <Form.Group controlId='name' className='py-1'>
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type='name'
-                  placeholder='Enter Name'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
+            {loading ? (
+              <Loader />
+            ) : error ? (
+              <Message variant='danger' message={error} />
+            ) : (
+              <Form onSubmit={onSubmitHandler}>
+                <Form.Group controlId='name' className='py-1'>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type='name'
+                    placeholder='Enter Name'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId='email' className='py-1'>
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type='email'
-                  placeholder='Enter Email'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId='email' className='py-1'>
+                  <Form.Label>Email Address</Form.Label>
+                  <Form.Control
+                    type='email'
+                    placeholder='Enter Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId='password' className='py-1'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type='password'
-                  placeholder='Enter Password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId='password' className='py-1'>
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type='password'
+                    placeholder='Enter Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group controlId='confirmPassword' className='py-1'>
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type='password'
-                  placeholder='Confirm Password'
-                  value={confirmPassword}
-                  onChange={(e) => setconfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group controlId='confirmPassword' className='py-1'>
+                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Control
+                    type='password'
+                    placeholder='Confirm Password'
+                    value={confirmPassword}
+                    onChange={(e) => setconfirmPassword(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-              <Button variant='primary' type='submit' className='mt-1'>
-                Update
-              </Button>
-            </Form>
+                <Button variant='primary' type='submit' className='mt-1'>
+                  Update
+                </Button>
+              </Form>
+            )}
           </Col>
           <Col md={9}>
             <h2 style={{ textAlign: 'center' }}>My Orders</h2>
