@@ -81,6 +81,7 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: PRODUCT_REVIEW_RESET,
   })
+  document.location.href = '/login'
 }
 
 export const register = (name, email, password) => async (dispatch) => {
