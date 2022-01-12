@@ -1,7 +1,7 @@
 import path from 'path'
 import express from 'express'
 import multer from 'multer'
-import { protect, admin } from '../middleware/authmiddleware.js'
+import { protect, admin } from '../middleware/authMiddleware.js'
 const router = express.Router()
 
 const storage = multer.diskStorage({
