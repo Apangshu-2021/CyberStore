@@ -27,7 +27,10 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
 } from '../constants/userConstants'
-const host = 'http://localhost:5000'
+const host =
+  process.env.NODE_ENV === 'production'
+    ? 'https://proshop2014.herokuapp.com'
+    : 'http://localhost:5000'
 
 export const login = (email, password) => async (dispatch) => {
   try {

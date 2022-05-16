@@ -106,7 +106,7 @@ const ProductScreen = () => {
                   </ListGroup>
                 </Col>
                 <Col md={3}>
-                  <Card className='ms-5'>
+                  <Card className='ms-md-5' id='add_To_Cart'>
                     {/* className='ms-5' is added because it overlaps the above components at smaller dimensions */}
                     <ListGroup variant='flush'>
                       <ListGroup.Item>

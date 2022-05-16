@@ -5,7 +5,11 @@ import {
   CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
 } from '../constants/cartConstants'
-const host = 'http://localhost:5000'
+
+const host =
+  process.env.NODE_ENV === 'production'
+    ? 'https://proshop2014.herokuapp.com'
+    : 'http://localhost:5000'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const res = await axios.get(`${host}/api/products/${id}`)
