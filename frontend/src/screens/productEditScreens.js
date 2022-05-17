@@ -36,7 +36,7 @@ const ProductEditScreen = () => {
   } = productUpdate
   const host =
     process.env.NODE_ENV === 'production'
-      ? 'https://proshop2014.herokuapp.com'
+      ? 'https://cyberstore2014.herokuapp.com'
       : 'http://localhost:5000'
 
   useEffect(() => {

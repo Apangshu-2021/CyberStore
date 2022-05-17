@@ -1,5 +1,5 @@
 {
-  "name": "proshop",
+  "name": "cyberstore",
   "version": "1.0.0",
   "description": "MERN shopping cart app",
   "main": "server.js",
@@ -19,9 +19,9 @@
   "author": "Apangshu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Apangshu-2021/ProShop/issues"
+    "url": "https://github.com/Apangshu-2021/CyberStore/issues"
   },
-  "homepage": "https://github.com/Apangshu-2021/ProShop#readme",
+  "homepage": "https://github.com/Apangshu-2021/CyberStore#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

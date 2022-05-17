@@ -1,4 +1,4 @@
-# ProShop eCommerce Website
+# CyberStore eCommerce Website
 
 > eCommerce website built with the MERN stack & Redux.
 

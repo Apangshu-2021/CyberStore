@@ -21,10 +21,13 @@ import {
 import { logout } from './userActions'
 import axios from 'axios'
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
+
 const host =
   process.env.NODE_ENV === 'production'
-    ? 'https://proshop2014.herokuapp.com'
+    ? 'https://cyberstore2014.herokuapp.com'
     : 'http://localhost:5000'
+
+//const host = 'http://localhost:5000'
 
 export const createdOrder = (order) => async (dispatch, getState) => {
   try {

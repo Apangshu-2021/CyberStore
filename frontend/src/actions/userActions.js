@@ -29,8 +29,10 @@ import {
 } from '../constants/userConstants'
 const host =
   process.env.NODE_ENV === 'production'
-    ? 'https://proshop2014.herokuapp.com'
+    ? 'https://cyberstore2014.herokuapp.com'
     : 'http://localhost:5000'
+
+//const host = 'http://localhost:5000'
 
 export const login = (email, password) => async (dispatch) => {
   try {
