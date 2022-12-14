@@ -24,10 +24,13 @@ import {
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
 } from '../constants/orderConstants'
-const host =
-  process.env.NODE_ENV === 'production'
-    ? 'https://cyberstore2014.herokuapp.com'
-    : 'http://localhost:5000'
+
+// const host =
+//   process.env.NODE_ENV === 'production'
+//     ? 'https://cyberstore2014.herokuapp.com'
+//     : 'http://localhost:5000'
+
+const host = 'http://localhost:5000'
 
 const OrderScreen = (props) => {
   const dispatch = useDispatch()

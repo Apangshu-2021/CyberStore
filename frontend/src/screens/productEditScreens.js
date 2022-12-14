@@ -34,10 +34,13 @@ const ProductEditScreen = () => {
     error: errorUpdate,
     success: successUpdate,
   } = productUpdate
-  const host =
-    process.env.NODE_ENV === 'production'
-      ? 'https://cyberstore2014.herokuapp.com'
-      : 'http://localhost:5000'
+
+  // const host =
+  //   process.env.NODE_ENV === 'production'
+  //     ? 'https://cyberstore2014.herokuapp.com'
+  //     : 'http://localhost:5000'
+
+  const host = 'http://localhost:5000'
 
   useEffect(() => {
     if (!userInfo) {
