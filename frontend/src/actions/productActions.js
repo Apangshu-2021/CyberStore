@@ -24,12 +24,12 @@ import {
 import { logout } from './userActions'
 import axios from 'axios'
 
-// const host =
-//   process.env.NODE_ENV === 'production'
-//     ? 'https://cyberstore2014.herokuapp.com'
-//     : 'http://localhost:5000'
+const host =
+  process.env.NODE_ENV === 'production'
+    ? 'https://cyber-store-five.vercel.app'
+    : 'http://localhost:5000'
 
-const host = 'http://localhost:5000'
+//const host = 'http://localhost:5000'
 
 export const listProducts =
   (keyword = '', pageNumber = '') =>
