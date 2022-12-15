@@ -3,12 +3,12 @@ import path from 'path'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
-import connectDB from './backend/config/db.js'
-import productRoutes from './backend/routes/productRoutes.js'
-import userRoutes from './backend/routes/userRoutes.js'
-import orderRoutes from './backend/routes/orderRoutes.js'
-import uploadRoutes from './backend/routes/uploadRoutes.js'
-import { notFound, errorHandler } from './backend/middleware/errorMiddleware.js'
+import connectDB from './config/db.js'
+import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 dotenv.config()
 connectDB()
